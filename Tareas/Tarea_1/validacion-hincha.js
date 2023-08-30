@@ -1,7 +1,34 @@
+const defaultOption = (text) => {
+    let option = document.createElement("option");
+    option.setAttribute("value", "default");
+    option.setAttribute("selected", "selected");
+    option.setAttribute("disabled", "disabled");
+    option.setAttribute("hidden", "hidden");
+    option.innerText = text;
+    return option;
+}
+
+const updateCommunes = (regions) => {
+    let selectedRegion = document.getElementById("region").value;
+    let communeList = document.getElementById("commune");
+    communeList.innerText = "";
+    communeList.append(defaultOption("Elija una comuna"));
+    for (commune of regions[selectedRegion]) {
+        let listOption = document.createElement("option");
+        listOption.setAttribute("name", commune);
+        listOption.setAttribute("value", commune);
+        listOption.setAttribute("id", commune);
+        listOption.innerText = commune;
+
+        communeList.append(listOption);
+        communeList.innerHTML += "<br>";
+    };
+}
+
 const validateSports = (sports) => {
     if(!sports) return false;
 
-    let 
+    
 }
 
 let sports = ["Clavados", "Natación", "Natación artística", "Polo acuático", "Natación en aguas abiertas", "Maratón", "Marcha", "Atletismo", "Bádminton", "Balonmano", "Básquetbol", "Básquetbol 3x3", "Béisbol", "Boxeo", "Bowling", "Breaking", "Canotaje Slalom", "Canotaje de velocidad", "BMX Freestyle", "BMX Racing", "Mountain Bike", "Ciclismo pista", "Ciclismo ruta", "Adiestramientro ecuestre", "Evento completo ecuestre", "Salto ecuestre", "Escalada deportiva", "Esgrima", "Esquí acuático y Wakeboard", "Fútbol", "Gimnasia artística Masculina", "Gimnasia artística Femenina", "Gimnasia rítmica", "Gimnasia trampolín", "Golf", "Hockey césped", "Judo", "Karate", "Levantamiento de pesas", "Lucha", "Patinaje artístico", "Skateboarding", "Patinaje velocidad", "Pelota vasca", "Pentatlón moderno", "Racquetball", "Remo", "Rugby 7", "Sóftbol", "Squash", "Surf", "Taekwondo", "Tenis", "Tenis de mesa", "Tiro", "Tiro con arco", "Triatlón", "Vela", "Vóleibol", "Vóleibol playa"];
@@ -24,9 +51,37 @@ let regions = {
     "XII - Magallanes y de la Antártica Chilena": ["Antártica", "Cabo de Hornos", "Laguna Blanca", "Natales", "Porvenir", "Primavera", "Punta Arenas", "Río Verde", "San Gregorio", "Timaukel", "Torres del Paine"]
 };
 
-let sportlist = document.getElementById("deporte");
-for (deporte of sports) {
+// Sports selection list
+let sportsList = document.getElementById("sports");
+for (sport of sports) {
+    let listCheckbox = document.createElement("input");
+    listCheckbox.setAttribute("type", "checkbox");
+    listCheckbox.setAttribute("name", sport);
+    listCheckbox.setAttribute("value", sport);
+    listCheckbox.setAttribute("id", sport);
+
+    let listLabel = document.createElement("label");
+    listLabel.setAttribute("for", sport);
+    listLabel.innerText = sport;
+
+    sportsList.append(listCheckbox);
+    sportsList.append(listLabel);
+    sportsList.innerHTML += "<br>";
+};
+
+// Regions selection list
+let regionList = document.getElementById("region");
+const keys = Object.keys(regions);
+keys.forEach((key, index) => {
     let listOption = document.createElement("option");
-    listOption.innerText = deporte;
-    sportlist.append(listOption);
-}
+    listOption.setAttribute("name", key);
+    listOption.setAttribute("value", key);
+    listOption.setAttribute("id", key);
+    listOption.innerText = key;
+
+    regionList.append(listOption);
+    regionList.innerHTML += "<br>";
+});
+
+// Update communes selection list
+regionList.setAttribute('onchange', 'updateCommunes(regions)');
