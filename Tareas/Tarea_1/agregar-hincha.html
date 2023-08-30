@@ -3,9 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Juegos Panamericanos</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Registrar hincha</h1>
+    </header>
+    <div class="container">
+        <form action="post" enctype="multipart/form-data">
+            <label for="deporte">Deporte:</label><br>
+            <select name="deporte" id="deporte" required>
+                <option value="" selected disabled hidden>Elige un deporte</option>
+            </select><br>
+
+            <label for="region">Región:</label><br>
+            <select name="region" id="region" required>
+                <option value="" selected disabled hidden>Elige una región</option>
+            </select><br>
+
+            <label for="comuna">Comuna:</label><br>
+            <select name="comuna" id="comuna" required>
+                <!--<option value="" selected disabled hidden>Elige una</option>-->
+            </select><br>
+
+            <label for="transport">Modo de transporte:</label><br>
+            <select name="transport" id="transport" required>
+                <option value="" selected disabled hidden>Elige un modo de transporte</option>
+                <option value="particular">Particular</option>
+                <option value="public">Locomoción pública</option>
+            </select><br>
+
+            <label for="name">Nombre:</label><br>
+            <input type="text" name="name" id="name" minlength="3" maxlength="80" required><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" name="email" id="email" maxlength="30" required><br>
+
+            <label for="phone">Teléfono:</label><br>
+            <input type="number" name="number" id="number" maxlength="15"><br>
+
+            <label for="comments">Comentario:</label><br>
+            <input type="text" name="comments" id="comments" maxlength="80"><br><br>
+
+            <button id="submit-btn" type="button">Registrar Hincha</button>
+        </form>
+    </div>
+    <script src="validacion-hincha.js"></script>
 </body>
 </html>
