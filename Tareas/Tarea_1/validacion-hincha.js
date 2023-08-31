@@ -28,7 +28,7 @@ const defaultOption = (text) => {
     return option;
 }
 
-const updateCommunes = (regions) => {
+const updateCommunes = () => {
     let selectedRegion = document.getElementById("region").value;
     let communeList = document.getElementById("commune");
     communeList.innerText = "";
@@ -83,6 +83,22 @@ const validatePhone = (phone) => {
     return re.test(phone);
 }
 
+const confirm = () => {
+    console.log("a");
+}
+
+const deny = () => {
+    console.log("b");
+}
+
+const submitForm = () => {
+    let confirm_btn = document.getElementById("confirm");
+    let deny_btn = document.getElementById("deny");
+
+    confirm_btn.addEventListener("click", confirm);
+    deny_btn.addEventListener("click", deny);
+}
+
 const validateForm = () => {
     // elements from the form
     let myForm = document.forms["myForm"];
@@ -114,7 +130,6 @@ const validateForm = () => {
     // Validation display
     let validationBox = document.getElementById("val-box");
     let validationList = document.getElementById("val-list");
-
     if(!isValid) {
         validationList.innerText = "";
 
@@ -126,8 +141,10 @@ const validateForm = () => {
 
         validationBox.hidden = false;
     } else {
+        let submitConfirmation = document.getElementById("submit");
+        submitConfirmation.hidden = false;
         validationBox.hidden = true;
-        // myForm.submit();
+        submitForm();
     }
 }
 
@@ -163,7 +180,7 @@ keys.forEach((key, index) => {
     regionList.innerHTML += "<br>";
 });
 
-regionList.setAttribute('onchange', 'updateCommunes(regions)');
+regionList.onchange = updateCommunes;
 
 submit_btn = document.getElementById("submit-btn");
 submit_btn.addEventListener("click", validateForm);
