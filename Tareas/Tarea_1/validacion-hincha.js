@@ -26,9 +26,66 @@ const updateCommunes = (regions) => {
 }
 
 const validateSports = (sports) => {
-    if(!sports) return false;
+    const sportsAmount = sports.length;
+    if(sportsAmount < 1 || 3 < sportsAmount) return false;
+    return true;
+}
 
-    
+const validateRegion = (region) => {
+    console.log(region);
+    if(!region) return false;
+    return true;
+}
+
+const validateCommune = (commune) => {
+
+}
+
+const validateTransport = (transport) => {
+
+}
+
+const validateName = (name) => {
+
+}
+
+const validateEmail = (email) => {
+
+}
+
+const validatePhone = (phone) => {
+
+}
+
+const validateForm = (form) => {
+    // elements from the form
+    let myForm = document.forms["myForm"];
+    let sports = document.querySelectorAll('input[name=sport]:checked');
+    let region = myForm["region"].value;
+    let commune = myForm["commune"].value;
+    let transport = myForm["transport"].value;
+    let name = myForm["name"].value;
+    let email = myForm["email"].value;
+    let phone = myForm["phone"].value;
+
+    // validate form
+    let invalidInputs = [];
+    let isValid = true;
+    const setInvalidInput = (inputName) => {
+        invalidInputs.push(inputName);
+        isValid = false;
+    }
+
+    // validate each component of the form
+    if(!validateSports(sports)) setInvalidInput("Deporte(s)");
+    if(!validateRegion(region)) setInvalidInput("Región");
+    if(!validateRegion(commune)) setInvalidInput("Comuna");
+    if(!validateRegion(transport)) setInvalidInput("Transporte");
+    if(!validateRegion(name)) setInvalidInput("Nombre");
+    if(!validateRegion(email)) setInvalidInput("Email");
+    if(!validateRegion(phone)) setInvalidInput("Número de celular");
+
+    console.log(isValid);
 }
 
 let sports = ["Clavados", "Natación", "Natación artística", "Polo acuático", "Natación en aguas abiertas", "Maratón", "Marcha", "Atletismo", "Bádminton", "Balonmano", "Básquetbol", "Básquetbol 3x3", "Béisbol", "Boxeo", "Bowling", "Breaking", "Canotaje Slalom", "Canotaje de velocidad", "BMX Freestyle", "BMX Racing", "Mountain Bike", "Ciclismo pista", "Ciclismo ruta", "Adiestramientro ecuestre", "Evento completo ecuestre", "Salto ecuestre", "Escalada deportiva", "Esgrima", "Esquí acuático y Wakeboard", "Fútbol", "Gimnasia artística Masculina", "Gimnasia artística Femenina", "Gimnasia rítmica", "Gimnasia trampolín", "Golf", "Hockey césped", "Judo", "Karate", "Levantamiento de pesas", "Lucha", "Patinaje artístico", "Skateboarding", "Patinaje velocidad", "Pelota vasca", "Pentatlón moderno", "Racquetball", "Remo", "Rugby 7", "Sóftbol", "Squash", "Surf", "Taekwondo", "Tenis", "Tenis de mesa", "Tiro", "Tiro con arco", "Triatlón", "Vela", "Vóleibol", "Vóleibol playa"];
@@ -56,7 +113,7 @@ let sportsList = document.getElementById("sports");
 for (sport of sports) {
     let listCheckbox = document.createElement("input");
     listCheckbox.setAttribute("type", "checkbox");
-    listCheckbox.setAttribute("name", sport);
+    listCheckbox.setAttribute("name", "sport");
     listCheckbox.setAttribute("value", sport);
     listCheckbox.setAttribute("id", sport);
 
@@ -83,5 +140,7 @@ keys.forEach((key, index) => {
     regionList.innerHTML += "<br>";
 });
 
-// Update communes selection list
 regionList.setAttribute('onchange', 'updateCommunes(regions)');
+
+submit_btn = document.getElementById("submit-btn");
+submit_btn.addEventListener("click", validateForm);
