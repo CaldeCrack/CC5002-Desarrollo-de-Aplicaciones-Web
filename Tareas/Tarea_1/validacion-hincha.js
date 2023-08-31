@@ -79,6 +79,7 @@ const validateEmail = (email) => {
 }
 
 const validatePhone = (phone) => {
+    if(!phone) return true;
     let re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
     return re.test(phone);
 }
@@ -126,7 +127,9 @@ const validateForm = () => {
     // Validation display
     let validationBox = document.getElementById("val-box");
     let validationList = document.getElementById("val-list");
+    let submitConfirmation = document.getElementById("submit");
     if(!isValid) {
+        submitConfirmation.hidden = true;
         validationList.innerText = "";
 
         for (input of invalidInputs) {
@@ -137,7 +140,6 @@ const validateForm = () => {
 
         validationBox.hidden = false;
     } else {
-        let submitConfirmation = document.getElementById("submit");
         submitConfirmation.hidden = false;
         validationBox.hidden = true;
     }
