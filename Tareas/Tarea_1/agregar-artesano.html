@@ -3,9 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Juegos Panamericanos - Artesano</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Registrar artesano</h1>
+    </header>
+    <div class="container">
+        <div id="val-box" hidden>
+            <h2>Complete adecuadamente los siguientes campos:</h2>
+            <ul id="val-list"></ul>
+        </div>
+        <form name="myForm" action="post" enctype="multipart/form-data">
+            <label for="region">Elija la región donde vive:</label><br>
+            <select id="region">
+                <option value="default" selected disabled hidden>Elija una región</option>
+            </select><br><br>
+
+            <label for="commune">Elija la comuna donde vive:</label><br>
+            <select id="commune">
+                <option value="default" selected disabled hidden>Elija una comuna</option>
+            </select><br><br>
+
+            <label for="craft-type">Elija su(s) tipo(s) de artesanía(s):</label><br>
+            <select id="craft-type">
+                <option value="default" selected disabled hidden>Elija sus tipos de artesanías</option>
+                <label for="marble">Mármol</label><br>
+                <option value="marble">Mármol</option>
+                <label for="wood">Madera</label><br>
+                <option value="wood">Madera</option>
+                <label for="ceramics">Cerámica</label><br>
+                <option value="ceramics">Cerámica</option>
+                <label for="wicker">Mimbre</label><br>
+                <option value="wicker">Mimbre</option>
+                <label for="metal">Metal</label><br>
+                <option value="metal">Metal</option>
+                <label for="leather">Cuero</label><br>
+                <option value="leather">Cuero</option>
+                <label for="silk">Telas</label><br>
+                <option value="silk">Telas</option>
+                <label for="jewels">Joyas</label><br>
+                <option value="jewels">Joyas</option>
+                <label for="others">Otro tipo</label><br>
+                <option value="others">Otro tipo</option>
+            </select><br><br>
+
+            <label for="desc">Descripción artesanías:</label><br>
+            <textarea name="desc" id="desc" cols="50" rows="4" placeholder="Ingresa una descripción de tus artesanías"></textarea><br><br>
+
+            <label for="images">Fotos artesanías:</label><br>
+            <input type="file" name="images" id="images" required multiple accept="image/*,.pdf"><br><br>
+
+            <label for="name">Nombre:</label><br>
+            <input type="text" name="name" id="name" minlength="3" maxlength="80" placeholder="Ingresa tu nombre" required><br><br>
+
+            <label for="email">Email contacto:</label><br>
+            <input type="email" name="email" id="email" maxlength="30" placeholder="Ingresa tu email" required><br><br>
+
+            <label for="phone">Número celular contacto:</label><br>
+            <input type="tel" name="phone" id="phone" maxlength="15" placeholder="Ingresa tu número de celular"><br><br>
+
+            <button id="submit-btn" type="button">Registrar Artesano</button>
+        </form>
+        <div id="submit" hidden>
+            <h3>¿Confirma el registro de este hincha?</h3>
+            <button id="confirm" type="button">Sí, confirmo</button>
+            <button id="deny" type="button">No, quiero volver al formulario</button>
+        </div>
+        <div id="submitted" hidden>
+            <p id="confirmation-message">Hemos recibido el registro de hincha.<br>Muchas Gracias.</p>
+            <a href="index.html">Volver al inicio</a>
+        </div>
+    </div>
+    <script src="validacion-artesano.js"></script>
 </body>
 </html>

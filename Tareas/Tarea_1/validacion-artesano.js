@@ -45,12 +45,6 @@ const updateCommunes = () => {
     };
 }
 
-const validateSports = (sports) => {
-    const sportsAmount = sports.length;
-    if(sportsAmount < 1 || 3 < sportsAmount) return false;
-    return true;
-}
-
 const validateRegion = (region) => {
     if(region == "default") return false;
     return true;
@@ -62,9 +56,23 @@ const validateCommune = (region, commune) => {
     return true;
 }
 
-const validateTransport = (transport) => {
-    if(transport == "default") return false;
+const validateCraftTypes = (crafts) => {
+    if(crafts == "default") return false;
     return true;
+}
+
+const validateCraftImages = (files) => {
+    if(!files) return false;
+
+    let lengthValid = 1 <= files.length && files.length <= 3;
+
+    let typeValid = true;
+    for (const file of files) {
+        let fileFamily = file.type.split("/")[0];
+        typeValid &&= fileFamily == "image" || file.type == "application/pdf"
+    }
+
+    return lengthValid && typeValid;
 }
 
 const validateName = (name) => {
@@ -96,17 +104,17 @@ const showDeny = () => {
 }
 
 const validateForm = () => {
-    // elements from the form
+    // Elements from the form
     let myForm = document.forms["myForm"];
-    let sports = document.querySelectorAll('input[name=sport]:checked');
     let region = myForm["region"].value;
     let commune = myForm["commune"].value;
-    let transport = myForm["transport"].value;
+    let craftTypes = myForm["craft-type"].value;
+    let craftImages = myForm["images"].files;
     let name = myForm["name"].value;
     let email = myForm["email"].value;
     let phone = myForm["phone"].value;
 
-    // validate form
+    // Validate form
     let invalidInputs = [];
     let isValid = true;
     const setInvalidInput = (inputName) => {
@@ -114,11 +122,11 @@ const validateForm = () => {
         isValid = false;
     }
 
-    // validate each component of the form
-    if(!validateSports(sports)) setInvalidInput("Deporte(s)");
+    // Validate each component of the form
     if(!validateRegion(region)) setInvalidInput("Región");
     if(!validateCommune(region, commune)) setInvalidInput("Comuna");
-    if(!validateTransport(transport)) setInvalidInput("Transporte");
+    if(!validateCraftTypes(craftTypes)) setInvalidInput("Tipos de artesanías");
+    if(!validateCraftImages(craftImages)) setInvalidInput("Imágenes de las artesanías");
     if(!validateName(name)) setInvalidInput("Nombre");
     if(!validateEmail(email)) setInvalidInput("Email");
     if(!validatePhone(phone)) setInvalidInput("Número de celular");
@@ -142,24 +150,6 @@ const validateForm = () => {
         validationBox.hidden = true;
     }
 }
-
-// Sports selection list
-let sportsList = document.getElementById("sports");
-for (sport of sports) {
-    let listCheckbox = document.createElement("input");
-    listCheckbox.setAttribute("type", "checkbox");
-    listCheckbox.setAttribute("name", "sport");
-    listCheckbox.setAttribute("value", sport);
-    listCheckbox.setAttribute("id", sport);
-
-    let listLabel = document.createElement("label");
-    listLabel.setAttribute("for", sport);
-    listLabel.innerText = sport;
-
-    sportsList.append(listCheckbox);
-    sportsList.append(listLabel);
-    sportsList.innerHTML += "<br>";
-};
 
 // Regions selection list
 let regionList = document.getElementById("region");

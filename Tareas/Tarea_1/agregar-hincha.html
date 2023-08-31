@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juegos Panamericanos</title>
+    <title>Juegos Panamericanos - Hincha</title>
 </head>
 <body>
     <header>
@@ -19,12 +19,12 @@
                 <legend>Elija entre 1 a 3 deportes de su interés</legend>
             </fieldset><br>
 
-            <label for="region">Elija la región donde vive</label><br>
+            <label for="region">Elija la región donde vive:</label><br>
             <select id="region">
                 <option value="default" selected disabled hidden>Elija una región</option>
             </select><br><br>
 
-            <label for="commune">Elija la comuna donde vive</label><br>
+            <label for="commune">Elija la comuna donde vive:</label><br>
             <select id="commune">
                 <option value="default" selected disabled hidden>Elija una comuna</option>
             </select><br><br>
@@ -57,7 +57,11 @@
             <button id="confirm" type="button">Sí, confirmo</button>
             <button id="deny" type="button">No, quiero volver al formulario</button>
         </div>
+        <div id="submitted" hidden>
+            <p id="confirmation-message">Hemos recibido el registro de hincha.<br>Muchas Gracias.</p>
+            <a href="index.html">Volver al inicio</a>
+        </div>
     </div>
-    <script src="validacion-hincha.js"></script>
+    <script src="validacion-artesano.js"></script>
 </body>
 </html>
