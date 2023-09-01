@@ -25,28 +25,27 @@
                 <option value="default" selected disabled hidden>Elija una comuna</option>
             </select><br><br>
 
-            <label for="craft-type">Elija su(s) tipo(s) de artesanía(s):</label><br>
-            <select id="craft-type">
-                <option value="default" selected disabled hidden>Elija sus tipos de artesanías</option>
+            <fieldset form="myForm" name="craft-types" id="craft-types" style="overflow-y: scroll; height: 10rem;">
+                <legend>Elija entre 1 a 3 tipos de artesanías</legend>
+                <input type="checkbox" name="craft" value="marble" id="marble">
                 <label for="marble">Mármol</label><br>
-                <option value="marble">Mármol</option>
+                <input type="checkbox" name="craft" value="wood" id="wood">
                 <label for="wood">Madera</label><br>
-                <option value="wood">Madera</option>
+                <input type="checkbox" name="craft" value="ceramics" id="ceramics">
                 <label for="ceramics">Cerámica</label><br>
-                <option value="ceramics">Cerámica</option>
+                <input type="checkbox" name="craft" value="wicker" id="wicker">
                 <label for="wicker">Mimbre</label><br>
-                <option value="wicker">Mimbre</option>
+                <input type="checkbox" name="craft" value="metal" id="metal">
                 <label for="metal">Metal</label><br>
-                <option value="metal">Metal</option>
+                <input type="checkbox" name="craft" value="leather" id="leather">
                 <label for="leather">Cuero</label><br>
-                <option value="leather">Cuero</option>
+                <input type="checkbox" name="craft" value="silk" id="silk">
                 <label for="silk">Telas</label><br>
-                <option value="silk">Telas</option>
-                <label for="jewels">Joyas</label><br>
-                <option value="jewels">Joyas</option>
-                <label for="others">Otro tipo</label><br>
-                <option value="others">Otro tipo</option>
-            </select><br><br>
+                <input type="checkbox" name="craft" value="jewel" id="jewel">
+                <label for="jewel">Joyas</label><br>
+                <input type="checkbox" name="craft" value="other" id="other">
+                <label for="other">Otro tipo</label><br>
+            </fieldset><br>
 
             <label for="desc">Descripción artesanías:</label><br>
             <textarea name="desc" id="desc" cols="50" rows="4" placeholder="Ingresa una descripción de tus artesanías"></textarea><br><br>

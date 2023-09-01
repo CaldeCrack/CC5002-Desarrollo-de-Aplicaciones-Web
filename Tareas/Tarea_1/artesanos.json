@@ -1,0 +1,52 @@
+{
+    "artesano1": {
+        "region": "",
+        "commune": "",
+        "craft-type": [],
+        "craft-desc": "",
+        "craft-images": [],
+        "name": "",
+        "email": "",
+        "phone": ""
+    },
+    "artesano2": {
+        "region": "",
+        "commune": "",
+        "craft-type": [],
+        "craft-desc": "",
+        "craft-images": [],
+        "name": "",
+        "email": "",
+        "phone": ""
+    },
+    "artesano3": {
+        "region": "",
+        "commune": "",
+        "craft-type": [],
+        "craft-desc": "",
+        "craft-images": [],
+        "name": "",
+        "email": "",
+        "phone": ""
+    },
+    "artesano4": {
+        "region": "",
+        "commune": "",
+        "craft-type": [],
+        "craft-desc": "",
+        "craft-images": [],
+        "name": "",
+        "email": "",
+        "phone": ""
+    },
+    "artesano5": {
+        "region": "",
+        "commune": "",
+        "craft-type": [],
+        "craft-desc": "",
+        "craft-images": [],
+        "name": "",
+        "email": "",
+        "phone": ""
+    }
+}
