@@ -52,15 +52,24 @@ let hinchas = {
 }
 let data = ["name", "commune", "sports", "transport", "phone"];
 
+const hinchaInfo = (input) => {
+    let td = document.createElement("td");
+    if (input == "")
+        td.innerText = "---";
+    else
+        td.innerText = input;
+    return td;
+};
+
 // Create table
 let table = document.getElementById("hinchas");
 const keys = Object.keys(hinchas);
 keys.forEach((key, index) => {
     let tr = document.createElement("tr");
     for (const attribute of data) {
-        let td = document.createElement("td");
-        td.innerText = hinchas[key][attribute];
-        tr.append(td);
+        tr.append(hinchaInfo(hinchas[key][attribute]));
     }
     table.append(tr);
 });
+
+table.onclick = () => window.location = "informacion-hincha.html";
