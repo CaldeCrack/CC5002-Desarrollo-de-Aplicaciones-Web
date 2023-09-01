@@ -21,9 +21,9 @@ let regions = {
 const defaultOption = (text) => {
     let option = document.createElement("option");
     option.setAttribute("value", "default");
-    option.setAttribute("selected", "selected");
-    option.setAttribute("disabled", "disabled");
-    option.setAttribute("hidden", "hidden");
+    option.selected = true;
+    option.disabled = true;
+    option.hidden = true;
     option.innerText = text;
     return option;
 }
@@ -147,7 +147,7 @@ const validateForm = () => {
 
 // Sports selection list
 let sportsList = document.getElementById("sports");
-for (sport of sports) {
+for (const sport of sports) {
     let listCheckbox = document.createElement("input");
     listCheckbox.setAttribute("type", "checkbox");
     listCheckbox.setAttribute("name", "sport");
