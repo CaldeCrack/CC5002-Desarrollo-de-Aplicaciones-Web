@@ -51,3 +51,17 @@ let artesanos = {
     }
 }
 
+let data = ["name", "phone", "commune", "craft-type", "craft-images"];
+
+// Create table
+let table = document.getElementById("artesanos");
+const keys = Object.keys(artesanos);
+keys.forEach((key, index) => {
+    let tr = document.createElement("tr");
+    for (const attribute of data) {
+        let td = document.createElement("td");
+        td.innerText = artesanos[key][attribute];
+        tr.append(td);
+    }
+    table.append(tr);
+});

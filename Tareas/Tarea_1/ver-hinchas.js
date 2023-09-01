@@ -50,4 +50,17 @@ let hinchas = {
         "comments": "Baki"
     }
 }
+let data = ["name", "commune", "sports", "transport", "phone"];
 
+// Create table
+let table = document.getElementById("hinchas");
+const keys = Object.keys(hinchas);
+keys.forEach((key, index) => {
+    let tr = document.createElement("tr");
+    for (const attribute of data) {
+        let td = document.createElement("td");
+        td.innerText = hinchas[key][attribute];
+        tr.append(td);
+    }
+    table.append(tr);
+});
