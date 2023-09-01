@@ -1,4 +1,4 @@
-{
+let artesanos = {
     "artesano1": {
         "region": "",
         "commune": "",
@@ -50,3 +50,4 @@
         "phone": ""
     }
 }
+

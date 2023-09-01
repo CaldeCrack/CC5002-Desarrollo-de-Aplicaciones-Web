@@ -1,4 +1,4 @@
-{
+let hinchas = {
     "hincha1": {
         "sports": ["Fútbol", "Boxeo"],
         "region": "XV - Arica y Parinacota",
@@ -50,3 +50,4 @@
         "comments": "Baki"
     }
 }
+
