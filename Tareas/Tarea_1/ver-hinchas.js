@@ -20,34 +20,34 @@ let hinchas = {
         "comments": ""
     },
     "hincha3": {
-        "sports": ["Clavados", "Natación"],
-        "region": "X - Los Lagos",
-        "commune": "Puerto Montt",
-        "transport": "Particular",
-        "name": "Víctor García",
-        "email": "victor.garcia@gmail.com",
-        "phone": "+56983018302",
-        "comments": "awa"
+        "sports": ["BMX Racing", "Tenis de mesa"],
+        "region": "RM - Región Metropolitana",
+        "commune": "Maipú",
+        "transport": "Locomoción pública",
+        "name": "Juan Valdivia",
+        "email": "juan.valdivia@gmail.com",
+        "phone": "---",
+        "comments": "chunchometalero"
     },
     "hincha4": {
-        "sports": ["Vela"],
-        "region": "IX - La Araucanía",
-        "commune": "Curacautín",
+        "sports": ["Tenis", "Vóleibol"],
+        "region": "RM - Región Metropolitana",
+        "commune": "Peñalolen",
         "transport": "Particular",
-        "name": "Pedro Pascal",
-        "email": "pedro.pascal@gmail.com",
-        "phone": "",
+        "name": "Martín Bahamonde",
+        "email": "martin.bahamonde@gmail.com",
+        "phone": "+56983018302",
         "comments": ""
     },
     "hincha5": {
-        "sports": ["Judo", "Karate", "Taekwondo"],
-        "region": "V - Valparaíso",
-        "commune": "El Quisco",
+        "sports": ["Básquetbol", "Vóleibol"],
+        "region": "RM - Región Metropolitana",
+        "commune": "Las Condes",
         "transport": "Locomoción pública",
-        "name": "Delaney Cielo",
-        "email": "delaney.cielo@gmail.com",
+        "name": "Nicolás Inostroza",
+        "email": "nicolas.inostroza@gmail.com",
         "phone": "",
-        "comments": "Baki"
+        "comments": ""
     }
 }
 let data = ["name", "commune", "sports", "transport", "phone"];
