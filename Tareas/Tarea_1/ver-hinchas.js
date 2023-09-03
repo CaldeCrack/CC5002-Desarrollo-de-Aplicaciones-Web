@@ -1,26 +1,26 @@
 let hinchas = {
     "hincha1": {
-        "sports": ["Fútbol", "Boxeo"],
-        "region": "XV - Arica y Parinacota",
-        "commune": "Arica",
-        "transport": "Particular",
-        "name": "Antonia Gómez",
-        "email": "antonia.gomez@gmail.com",
+        "sports": ["Fútbol", "Vóleibol"],
+        "region": "RM - Región Metropolitana",
+        "commune": "Colina",
+        "transport": "Locomoción pública",
+        "name": "Luciano Marquez",
+        "email": "luciano.marquez@gmail.com",
         "phone": "+56958390102",
         "comments": ""
     },
     "hincha2": {
-        "sports": ["BMX Racing"],
+        "sports": ["Esgrima", "Tiro"],
         "region": "RM - Región Metropolitana",
-        "commune": "La Pintana",
+        "commune": "Ñuñoa",
         "transport": "Locomoción pública",
-        "name": "Alexander Perez",
-        "email": "alexander.perez@gmail.com",
+        "name": "Antonia Gutierrez",
+        "email": "antonia.gutierrez@gmail.com",
         "phone": "+56973839402",
         "comments": ""
     },
     "hincha3": {
-        "sports": ["Clavados", "Natación", "Natación en aguas abiertas"],
+        "sports": ["Clavados", "Natación"],
         "region": "X - Los Lagos",
         "commune": "Puerto Montt",
         "transport": "Particular",

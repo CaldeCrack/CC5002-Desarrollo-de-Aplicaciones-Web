@@ -4,7 +4,7 @@ let artesanos = {
         "commune": "Lo Espejo",
         "craft-type": ["Otro tipo"],
         "craft-desc": "bomnito",
-        "craft-images": ["/img/bocchi120.jpg"],
+        "craft-image": "/img/buho.jpg",
         "name": "Andrés Calderón",
         "email": "andres.calderon@ug.uchile.cl",
         "phone": ""
@@ -14,51 +14,52 @@ let artesanos = {
         "commune": "Antofagasta",
         "craft-type": ["Metal"],
         "craft-desc": "bot",
-        "craft-images": [""],
-        "name": "Raimundo Alarcón",
-        "email": "raimundo.alarcon@gmail.com",
+        "craft-image": "/img/bot.png",
+        "name": "Benjamín Lorca",
+        "email": "benjamin.lorca@gmail.com",
         "phone": "+56902749103"
     },
     "artesano3": {
         "region": "XVI - Ñuble",
         "commune": "Pinto",
         "craft-type": ["Otro tipo"],
-        "craft-desc": "",
-        "craft-images": [],
-        "name": "Alicia Quinteros",
-        "email": "alicia.quinteros@gmail.com",
+        "craft-desc": "Travelception el mejor videojuego creado disponible en itch.io",
+        "craft-image": "/img/videojuego.png",
+        "name": "Elías Quinteros",
+        "email": "elias.quinteros@gmail.com",
         "phone": ""
     },
     "artesano4": {
         "region": "IV - Coquimbo",
         "commune": "La Serena",
-        "craft-type": ["Telas"],
+        "craft-type": ["Telas", "Cerámica"],
         "craft-desc": "pandita rojo dcc",
-        "craft-images": [],
+        "craft-image": "/img/panda_rojo.jpg",
         "name": "Eduardo Ramírez",
         "email": "eduardo@ramirez@gmail.com",
         "phone": "+56903728405"
     },
     "artesano5": {
-        "region": "RM - Región Metropolitana",
-        "commune": "Estación Central",
-        "craft-type": [],
+        "region": "X - Los Lagos",
+        "commune": "Puerto Montt",
+        "craft-type": ["Telas", "Mimbre"],
         "craft-desc": "",
-        "craft-images": [],
-        "name": "Felipe González",
-        "email": "felipe.gonzalez@gmail.com",
+        "craft-image": "/img/calcetas.jpg",
+        "name": "Valentina Alarcón",
+        "email": "valentina.alarcon@gmail.com",
         "phone": "+56951648923"
     }
 }
-let data = ["name", "phone", "commune", "craft-type", "craft-images"];
+let data = ["name", "phone", "commune", "craft-type", "craft-image"];
 
 const artesanoInfo = (input, attribute) => {
     let td = document.createElement("td");
     if (input == "")
         td.innerText = "---";
-    else if (attribute == "craft-images") {
+    else if (attribute == "craft-image") {
         let image = document.createElement("img");
-        image.src = input[0].substr(1);
+        image.src = input.substr(1);
+        image.alt = input.substr(5);
         td.append(image);
     }
     else
