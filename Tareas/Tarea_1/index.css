@@ -7,14 +7,16 @@
 }
 
 body {
+    font-family: sans-serif;
     background-color: var(--background);
 }
 
 header{
-    background-color: var(--primary);
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--text);
     font-size: 2vw;
     text-align: center;
-    color: var(--background);
+    margin-top: -5px;
     margin-left: 32vw;
     margin-right: 32vw;
     border-radius: 15px;
@@ -24,20 +26,20 @@ a {
     color: var(--background);
     text-decoration: none;
     font-size: 26px;
-    margin: -10em;
-    padding: 10em;
+    padding: 0;
+    width: 100%;
 }
 
 table {
     background-color: #505050;
-    margin-top: 12%;
+    margin-top: 10%;
     margin-bottom: auto;
     width: 40%;
     margin-left: auto;
     margin-right: auto;
     border-collapse: separate;
-    border:solid var(--secondary) 1px;
-    border-radius:6px;
+    border: solid var(--secondary) 1px;
+    border-radius: 6px;
 }
 
 tr, td {
@@ -50,8 +52,13 @@ td {
     border: solid var(--secondary) 2px;
 }
 
+td :hover{
+    background-color: var(--secondary);
+    color: var(--text);
+}
+
 tr {
-    height: 70px;
+    height: 5rem;
 }
 
 tr:nth-child(even) {

@@ -8,7 +8,7 @@ const defaultOption = (text) => {
     option.hidden = true;
     option.innerText = text;
     return option;
-};
+}
 
 const updateCommunes = () => {
     let selectedRegion = document.getElementById("region").value;
@@ -24,25 +24,25 @@ const updateCommunes = () => {
 
         communeList.append(listOption);
         communeList.innerHTML += "<br>";
-    };
-};
+    }
+}
 
 const validateRegion = (region) => {
     if(region == "default") return false;
     return true;
-};
+}
 
 const validateCommune = (region, commune) => {
     if(commune == "default") return false;
     if(!regions[region].includes(commune)) return false;
     return true;
-};
+}
 
 const validateCraftTypes = (crafts) => {
     const craftsAmount = crafts.length;
     if(craftsAmount < 1 || 3 < craftsAmount) return false;
     return true;
-};
+}
 
 const validateCraftImages = (files) => {
     if(!files) return false;
@@ -53,39 +53,39 @@ const validateCraftImages = (files) => {
     for (const file of files) {
         let fileFamily = file.type.split("/")[0];
         typeValid &&= fileFamily == "image" || file.type == "application/pdf"
-    };
+    }
 
     return lengthValid && typeValid;
-};
+}
 
 const validateName = (name) => {
     const nameLength = name.length;
     if(nameLength < 3 || 80 < nameLength) return false;
     return true;
-};
+}
 
 const validateEmail = (email) => {
     let re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return re.test(email);
-};
+}
 
 const validatePhone = (phone) => {
     if(!phone) return true;
     let re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
     return re.test(phone);
-};
+}
 
 const showConfirm = () => {
     let submitConfirmation = document.getElementById("submit");
     let confirmationMessage = document.getElementById("submitted");
     submitConfirmation.hidden = true;
     confirmationMessage.hidden = false;
-};
+}
 
 const showDeny = () => {
     let submitConfirmation = document.getElementById("submit");
     submitConfirmation.hidden = true;
-};
+}
 
 const validateForm = () => {
     // Elements from the form
@@ -134,7 +134,7 @@ const validateForm = () => {
         submitConfirmation.hidden = false;
         validationBox.hidden = true;
     }
-};
+}
 
 // Regions selection list
 let regionList = document.getElementById("region");
