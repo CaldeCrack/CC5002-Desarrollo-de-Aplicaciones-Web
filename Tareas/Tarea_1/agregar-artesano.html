@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="agregar-artesano.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juegos Panamericanos - Artesano</title>
 </head>
 <body>
+    <div id="not-opaque" hidden>
+        <div id="submit" hidden>
+            <h2>¿Confirma el registro de este hincha?</h2>
+            <div id="buttons">
+                <button id="confirm" type="button">Sí, confirmo</button>
+                <button id="deny" type="button">No, quiero volver al formulario</button>
+            </div>
+        </div>
+        <div id="submitted" hidden>
+            <p id="confirmation-message">Hemos recibido el registro de hincha.<br>Muchas Gracias.</p>
+            <a href="index.html">Volver al inicio</a>
+        </div>
+        <script type="module" src="validacion-artesano.js"></script>
+    </div>
     <header>
         <h1>Registrar artesano</h1>
     </header>
@@ -16,35 +31,37 @@
         </div>
         <form name="myForm" id="myForm" action="post" enctype="multipart/form-data">
             <label for="region">Elija la región donde vive:</label><br>
-            <select id="region">
-                <option value="default" selected disabled hidden>Elija una región</option>
+            <select id="region" class="onchange-region">
+                <option value="default" id="default" selected disabled hidden>Elija una región</option>
             </select><br><br>
 
             <label for="commune">Elija la comuna donde vive:</label><br>
-            <select id="commune">
-                <option value="default" selected disabled hidden>Elija una comuna</option>
+            <select id="commune" class="onchange-commune">
+                <option value="default" id="default" selected disabled hidden>Elija una comuna</option>
             </select><br><br>
 
-            <fieldset form="myForm" name="craft-types" id="craft-types" style="overflow-y: scroll; height: 10rem;">
+            <fieldset form="myForm" name="craft-types" id="craft-types">
                 <legend>Elija entre 1 a 3 tipos de artesanías</legend>
-                <input type="checkbox" name="craft" value="marble" id="marble">
-                <label for="marble">Mármol</label><br>
-                <input type="checkbox" name="craft" value="wood" id="wood">
-                <label for="wood">Madera</label><br>
-                <input type="checkbox" name="craft" value="ceramics" id="ceramics">
-                <label for="ceramics">Cerámica</label><br>
-                <input type="checkbox" name="craft" value="wicker" id="wicker">
-                <label for="wicker">Mimbre</label><br>
-                <input type="checkbox" name="craft" value="metal" id="metal">
-                <label for="metal">Metal</label><br>
-                <input type="checkbox" name="craft" value="leather" id="leather">
-                <label for="leather">Cuero</label><br>
-                <input type="checkbox" name="craft" value="silk" id="silk">
-                <label for="silk">Telas</label><br>
-                <input type="checkbox" name="craft" value="jewel" id="jewel">
-                <label for="jewel">Joyas</label><br>
-                <input type="checkbox" name="craft" value="other" id="other">
-                <label for="other">Otro tipo</label><br>
+                <div class="fieldset">
+                    <input type="checkbox" name="craft" value="marble" id="marble">
+                    <label for="marble">Mármol</label>
+                    <input type="checkbox" name="craft" value="wood" id="wood">
+                    <label for="wood">Madera</label>
+                    <input type="checkbox" name="craft" value="ceramics" id="ceramics">
+                    <label for="ceramics">Cerámica</label><br>
+                    <input type="checkbox" name="craft" value="wicker" id="wicker">
+                    <label for="wicker">Mimbre</label>
+                    <input type="checkbox" name="craft" value="metal" id="metal">
+                    <label for="metal">Metal</label>
+                    <input type="checkbox" name="craft" value="leather" id="leather">
+                    <label for="leather">Cuero</label><br>
+                    <input type="checkbox" name="craft" value="silk" id="silk">
+                    <label for="silk">Telas</label>
+                    <input type="checkbox" name="craft" value="jewel" id="jewel">
+                    <label for="jewel">Joyas</label>
+                    <input type="checkbox" name="craft" value="other" id="other">
+                    <label for="other">Otro tipo</label><br>
+                </div>
             </fieldset><br>
 
             <label for="desc">Descripción artesanías:</label><br>
@@ -64,16 +81,7 @@
 
             <button id="submit-btn" type="button">Registrar Artesano</button>
         </form>
-        <div id="submit" hidden>
-            <h3>¿Confirma el registro de este hincha?</h3>
-            <button id="confirm" type="button">Sí, confirmo</button>
-            <button id="deny" type="button">No, quiero volver al formulario</button>
-        </div>
-        <div id="submitted" hidden>
-            <p id="confirmation-message">Hemos recibido el registro de hincha.<br>Muchas Gracias.</p>
-            <a href="index.html">Volver al inicio</a>
-        </div>
     </div>
-    <script type="module" src="validacion-artesano.js"></script>
+    
 </body>
 </html>

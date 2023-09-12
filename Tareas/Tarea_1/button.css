@@ -26,3 +26,29 @@ a:active {
     background-color: var(--primary);
     transition: none;
 }
+
+button {
+    padding: 0px;
+    margin-top: 10px;
+    margin: 0;
+    border-radius: 10px;
+    background-color: var(--primary);
+    color: var(--background);
+    font-size: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 8em;
+    height: 3em;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: var(--secondary);
+    color: var(--text);
+}
+
+button:active {
+    background-color: var(--primary);
+    transition: none;
+}

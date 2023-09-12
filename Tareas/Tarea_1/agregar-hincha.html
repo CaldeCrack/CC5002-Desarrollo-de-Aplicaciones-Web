@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="agregar-hincha.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juegos Panamericanos - Hincha</title>
 </head>
 <body>
+    <div id="not-opaque" hidden>
+        <div id="submit" hidden>
+            <h2>¿Confirma el registro de este hincha?</h2>
+            <div id="buttons">
+                <button id="confirm" type="button">Sí, confirmo</button>
+                <button id="deny" type="button">No, quiero volver al formulario</button>
+            </div>
+        </div>
+        <div id="submitted" hidden>
+            <p id="confirmation-message">Hemos recibido el registro de hincha.<br>Muchas Gracias.</p>
+            <a href="index.html">Volver al inicio</a>
+        </div>
+    </div>
     <header>
         <h1>Registrar hincha</h1>
     </header>
@@ -20,21 +34,19 @@
             </fieldset><br>
 
             <label for="region">Elija la región donde vive:</label><br>
-            <select id="region">
-                <option value="default" selected disabled hidden>Elija una región</option>
+            <select id="region" class="onchange-region">
+                <option value="default" id="default" selected disabled hidden>Elija una región</option>
             </select><br><br>
 
             <label for="commune">Elija la comuna donde vive:</label><br>
-            <select id="commune">
-                <option value="default" selected disabled hidden>Elija una comuna</option>
+            <select id="commune" class="onchange-commune">
+                <option value="default" id="default" selected disabled hidden>Elija una comuna</option>
             </select><br><br>
 
             <label for="transport">Elija su modo de transporte:</label><br>
-            <select id="transport">
-                <option value="default" selected disabled hidden>Elija su método de transporte</option>
-                <!-- <label for="particular">Particular</label><br> -->
+            <select id="transport" class="onchange-transport">
+                <option value="default" id="default" selected disabled hidden>Elija una opción</option>
                 <option value="particular" id="particular">Particular</option>
-                <!-- <label for="public">Locomoción pública</label><br> -->
                 <option value="public" id="public">Locomoción pública</option>
             </select><br><br>
 
@@ -52,15 +64,6 @@
 
             <button id="submit-btn" type="button">Registrar Hincha</button>
         </form>
-        <div id="submit" hidden>
-            <h3>¿Confirma el registro de este hincha?</h3>
-            <button id="confirm" type="button">Sí, confirmo</button>
-            <button id="deny" type="button">No, quiero volver al formulario</button>
-        </div>
-        <div id="submitted" hidden>
-            <p id="confirmation-message">Hemos recibido el registro de hincha.<br>Muchas Gracias.</p>
-            <a href="index.html">Volver al inicio</a>
-        </div>
     </div>
     <script type="module" src="validacion-hincha.js"></script>
 </body>

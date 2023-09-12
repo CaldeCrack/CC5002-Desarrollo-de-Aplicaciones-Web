@@ -11,8 +11,11 @@ const defaultOption = (text) => {
 }
 
 const updateCommunes = () => {
-    let selectedRegion = document.getElementById("region").value;
+    let regionSelect = document.getElementById("region")
+    regionSelect.classList.remove("onchange-region")
+    let selectedRegion = regionSelect.value;
     let communeList = document.getElementById("commune");
+    communeList.classList.add("onchange-commune");
     communeList.innerText = "";
     communeList.append(defaultOption("Elija una comuna"));
     for (const commune of regions[selectedRegion]) {
@@ -74,7 +77,9 @@ const showConfirm = () => {
 }
 
 const showDeny = () => {
+    let contentOpaque = document.getElementById("not-opaque");
     let submitConfirmation = document.getElementById("submit");
+    contentOpaque.hidden = true;
     submitConfirmation.hidden = true;
 }
 
@@ -110,6 +115,7 @@ const validateForm = () => {
     let validationBox = document.getElementById("val-box");
     let validationList = document.getElementById("val-list");
     let submitConfirmation = document.getElementById("submit");
+    let contentOpaque = document.getElementById("not-opaque");
     if(!isValid) {
         submitConfirmation.hidden = true;
         validationList.innerText = "";
@@ -121,7 +127,9 @@ const validateForm = () => {
         }
 
         validationBox.hidden = false;
+        window.scrollTo(0, 0);
     } else {
+        contentOpaque.hidden = false;
         submitConfirmation.hidden = false;
         validationBox.hidden = true;
     }
@@ -160,6 +168,11 @@ keys.forEach((key, index) => {
 });
 
 regionList.onchange = updateCommunes;
+let communeSelect = document.getElementById("commune");
+communeSelect.onchange = () => {communeSelect.classList.remove("onchange-commune")};
+
+let transportSelect = document.getElementById("transport");
+transportSelect.onchange = () => {transportSelect.classList.remove("onchange-transport")};
 
 let submit_btn = document.getElementById("submit-btn");
 submit_btn.addEventListener("click", validateForm);
