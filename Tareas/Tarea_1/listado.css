@@ -1,0 +1,56 @@
+@import "colors.css";
+@import "animations.css";
+@import "header.css";
+@import "button.css";
+
+body {
+    font-family: sans-serif;
+    background-color: var(--background);
+    background-size: cover;
+}
+
+table {
+    background-color: inherit;
+    color: inherit;
+    margin-bottom: auto;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border: solid var(--secondary) 2px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+tr, td, th {
+    border: solid var(--secondary) 1px;
+    padding-left: 5px;
+    text-align: left;
+    vertical-align: center;
+}
+
+th {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: var(--accent);
+    color: var(--background);
+}
+
+tr {
+    background-color: #7e7e7e;
+    color: inherit;
+    height: 2.8rem;
+}
+
+tr:nth-child(even){
+    color: inherit;
+    background-color: #8f8f8f;
+}
+
+tr:hover {
+    background-color: var(--terciary);
+}
+
+td {
+    overflow: hidden;
+}
