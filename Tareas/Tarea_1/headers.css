@@ -1,0 +1,15 @@
+header {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--text);
+    font-size: 2vw;
+    text-align: center;
+    margin-top: -5px;
+    margin-left: 32vw;
+    margin-right: 32vw;
+    border-radius: 15px;
+    animation-duration: 1s;
+    animation-name: changeScale;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}

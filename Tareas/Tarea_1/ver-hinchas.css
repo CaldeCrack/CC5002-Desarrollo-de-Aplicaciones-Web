@@ -1,5 +1,6 @@
 @import "colors.css";
 @import "animations.css";
+@import "headers.css";
 
 body {
     font-family: sans-serif;
@@ -8,24 +9,8 @@ body {
     background-size: cover;
 }
 
-header {
-    font-family: 'Courier New', Courier, monospace;
-    color: var(--text);
-    font-size: 2vw;
-    text-align: center;
-    margin-top: -5px;
-    margin-left: 32vw;
-    margin-right: 32vw;
-    border-radius: 15px;
-    animation-duration: 1s;
-    animation-name: changeScale;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
-}
-
 table {
-    background-color: var(--terciary);
+    background-color: inherit;
     color: inherit;
     margin-bottom: auto;
     width: 60%;
@@ -53,10 +38,12 @@ th {
 
 tr {
     background-color: #7e7e7e;
+    color: inherit;
     height: 2.8rem;
 }
 
 tr:nth-child(even){
+    color: inherit;
     background-color: #8f8f8f;
 }
 

@@ -1,27 +1,12 @@
 @import "colors.css";
 @import "animations.css";
+@import "headers.css";
 
 body {
     font-family: sans-serif;
     background-color: var(--background);
     background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(https://images.pexels.com/photos/11849230/pexels-photo-11849230.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
     background-size: cover;
-}
-
-header {
-    font-family: 'Courier New', Courier, monospace;
-    color: var(--text);
-    font-size: 2vw;
-    text-align: center;
-    margin-top: -5px;
-    margin-left: 32vw;
-    margin-right: 32vw;
-    border-radius: 15px;
-    animation-duration: 1s;
-    animation-name: changeScale;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
 }
 
 table {
