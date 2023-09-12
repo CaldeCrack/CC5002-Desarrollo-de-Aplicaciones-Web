@@ -1,10 +1,4 @@
-:root {
-    --text: #ffffff;
-    --background: #020303;
-    --primary: #8d9fa0;
-    --secondary: #1e2424;
-    --accent: #7c9092;
-}
+@import "colors.css";
 
 body {
     font-family: sans-serif;
@@ -22,14 +16,6 @@ header{
     border-radius: 15px;
 }
 
-a {
-    color: var(--background);
-    text-decoration: none;
-    font-size: 26px;
-    padding: 0;
-    width: 100%;
-}
-
 table {
     background-color: #505050;
     margin-top: 10%;
@@ -42,30 +28,47 @@ table {
     border-radius: 6px;
 }
 
+tr {
+    background-color: var(--primary);
+    height: 5rem;
+}
+
 tr, td {
     text-align: center;
+    vertical-align: center;
 }
 
 td {
     overflow: hidden;
     border-radius: 5px;
     border: solid var(--secondary) 2px;
+    padding: 0em;
+    height: 2em;
 }
 
 td :hover{
+    transition-duration: 0.4s;
     background-color: var(--secondary);
     color: var(--text);
 }
 
-tr {
-    height: 5rem;
+a {
+    color: var(--background);
+    text-decoration: none;
+    font-size: 26px;
+    height: 100%;
+    width: 100%;
+    line-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-tr:nth-child(even) {
-    background-color: var(--primary);
-}
-
-tr:nth-child(odd) {
-    border-top: none;
-    background-color: var(--accent);
+div {
+    padding: 0.5em 0.3em;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
