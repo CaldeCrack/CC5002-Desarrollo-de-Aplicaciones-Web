@@ -1,5 +1,5 @@
-let imgs_640 = ["img/buho_640.jpg", "img/cisne_640.jpg", "img/bocchi_640.jpg"];
-let imgs_1280 = ["img/buho_1280.jpg", "img/cisne_1280.jpg", "img/bocchi_1280.jpg"];
+let imgs_640 = ["../img/buho_640.jpg", "../img/cisne_640.jpg", "../img/bocchi_640.jpg"];
+let imgs_1280 = ["../img/buho_1280.jpg", "../img/cisne_1280.jpg", "../img/bocchi_1280.jpg"];
 let imgIn640 = {
     "buho": [true, 0],
     "cisne": [true, 1],
