@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} Ruta {% endblock %}
+
+{% block css %}
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='css/styles.css')}}"
+/>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if num %}
+        {% for i in range(num) %}
+        <img src="{{ url_for('static', filename='svg/icon.svg')}}" alt="">
+        {% endfor %}
+    {% else %}
+        <p> No se entrego un valor </p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script lang="javascript" src="{{ url_for('static', filename='js/code.js')}}"></script>
+{% endblock %}
