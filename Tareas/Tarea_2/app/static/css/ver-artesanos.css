@@ -1,0 +1,27 @@
+@import "listado.css";
+
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(https://images.pexels.com/photos/15122653/pexels-photo-15122653/free-photo-of-artisans-making-clay-vases.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+}
+
+#artesanos-container {
+    align-self: center;
+    width: 70%;
+    margin: auto;
+}
+
+#pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#index {
+    display: block;
+    font-size: 24px;
+    padding: 14px;
+    margin: auto 5px;
+    background-color: var(--primary);
+    border-color: var(--secondary);
+    border-radius: 10px;
+}

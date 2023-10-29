@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos Panamericanos - Inicio</title>
+</head>
+<body>
+    <div id="not-opaque" {% if not show %} hidden {% endif %} >
+        <div id="submitted">
+            <p id="confirmation-message">Hemos recibido el registro de artesano.<br>Muchas Gracias.</p>
+            <button id="ok" type="button">OK</button>
+        </div>
+    </div>
+    <header>
+        <h1>Juegos<br>Panamericanos</h1>
+    </header>
+    <table>
+        <tr>
+            <td> <a href="{{ url_for('agregar_hincha') }}"><div>Registrar Hincha</div></a> </td>
+            <td> <a href="{{ url_for('agregar_artesano') }}"><div>Registrar Artesano</div></a> </td>
+        </tr>
+        <tr>
+            <td> <a href="{{ url_for('ver_hinchas') }}"><div>Ver listado de hinchas</div></a> </td>
+            <td> <a href="{{ url_for('ver_artesanos') }}"><div>Ver listado de artesanos</div></a> </td>
+        </tr>
+    </table>
+    <script type="module" src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>

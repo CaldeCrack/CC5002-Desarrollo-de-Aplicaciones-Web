@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ver-hinchas.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos Panamericanos - Listado de Hinchas</title>
+</head>
+<body>
+    <header>
+        <h2>Listado de Hinchas</h2>
+    </header>
+    <table id="hinchas">
+        <tr>
+            <th>Nombre</th>
+            <th>Comuna</th>
+            <th>Deportes</th>
+            <th>Modo Transporte</th>
+            <th>Número celular</th>
+        </tr>
+    </table>
+    <a href="{{ url_for('index') }}">Volver al inicio</a>
+    <script type="module" src="{{ url_for('static', filename='js/ver-hinchas.js') }}"></script>
+</body>
+</html>

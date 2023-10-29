@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/informacion-artesano.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos Panamericanos - Info Artesano</title>
+</head>
+<body>
+    <header>
+        <h2>Información del artesano</h2>
+    </header>
+    {% if data %}
+        <div>
+            <h3>Región donde vive:</h3>
+            <p>{{data.region}}</p>
+            <h3>Comuna donde vive:</h3>
+            <p>{{data.commune}}</p>
+            <h3>Tipo artesanías:</h3>
+            {% for type in data.types %}
+                <p>{{type[0]}}</p>
+            {% endfor %}
+            <h3>Descripción artesanías:</h3>
+            <p>{{data.desc if data.desc else "---"}}</p>
+            <h3>Fotos artesanías:</h3>
+            <ul>
+                {% for img in data.imgs %}
+                    <li><img src="{{img[0]}}/{{img[1]}}" alt="artesania de {{data.name}}" class="default" id="{{loop.index}}"></li>
+                {% endfor %}
+            </ul>
+            <h3>Nombre artesano(a):</h3>
+            <p>{{data.name}}</p>
+            <h3>Email contacto artesano:</h3>
+            <p>{{data.email}}</p>
+            <h3>Número celular contacto:</h3>
+            <p>{{data.phone if data.phone else "---"}}</p>
+        </div>
+    {% endif %}
+    <a href="{{ url_for('ver_artesanos', page=pagina) }}">Volver al listado de artesanos</a>
+    <script type="module" src="{{ url_for('static', filename='js/informacion-artesano.js') }}"></script>
+</body>
+</html>

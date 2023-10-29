@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/agregar-hincha.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos Panamericanos - Hincha</title>
+</head>
+<body>
+    <div id="not-opaque" hidden>
+        <div id="submit" hidden>
+            <h2>¿Confirma el registro de este hincha?</h2>
+            <div id="buttons">
+                <button id="confirm" type="button">Sí, confirmo</button>
+                <button id="deny" type="button">No, quiero volver al formulario</button>
+            </div>
+        </div>
+        <div id="submitted" hidden>
+            <p id="confirmation-message">Hemos recibido el registro de hincha.<br>Muchas Gracias.</p>
+            <a href="{{ url_for('index') }}">Volver al inicio</a>
+        </div>
+    </div>
+    <header>
+        <h1>Registrar hincha</h1>
+    </header>
+    <div class="container">
+        <div id="val-box" hidden>
+            <h2>Complete adecuadamente los siguientes campos:</h2>
+            <ul id="val-list"></ul>
+        </div>
+        <form name="myForm" id="myForm" action="post" enctype="multipart/form-data">
+            <fieldset form="myForm" name="sports" id="sports" style="overflow-y: scroll; height: 10rem;">
+                <legend>Elija entre 1 a 3 deportes de su interés</legend>
+            </fieldset><br>
+
+            <label for="region">Elija la región donde vive:</label><br>
+            <select id="region" class="onchange-region">
+                <option value="default" selected disabled hidden>Elija una región</option>
+            </select><br><br>
+
+            <label for="commune">Elija la comuna donde vive:</label><br>
+            <select id="commune" class="onchange-commune">
+                <option value="default" selected disabled hidden>Elija una comuna</option>
+            </select><br><br>
+
+            <label for="transport">Elija su modo de transporte:</label><br>
+            <select id="transport" class="onchange-transport">
+                <option value="default" selected disabled hidden>Elija una opción</option>
+                <option value="particular" id="particular">Particular</option>
+                <option value="public" id="public">Locomoción pública</option>
+            </select><br><br>
+
+            <label for="name">Nombre:</label><br>
+            <input type="text" name="name" id="name" minlength="3" maxlength="80" placeholder="Ingresa tu nombre" required><br><br>
+
+            <label for="email">Email contacto:</label><br>
+            <input type="email" name="email" id="email" maxlength="30" placeholder="Ingresa tu email" required><br><br>
+
+            <label for="phone">Número celular contacto:</label><br>
+            <input type="tel" name="phone" id="phone" maxlength="15" placeholder="Ingresa tu número de celular"><br><br>
+
+            <label for="comments">Comentarios adicionales:</label><br>
+            <input type="text" name="comments" id="comments" maxlength="80" placeholder="Ingresa tus comentarios"><br><br>
+
+            <button id="submit-btn" type="button">Registrar Hincha</button>
+        </form>
+    </div>
+    <script type="module" src="{{ url_for('static', filename='js/validacion-hincha.js') }}"></script>
+</body>
+</html>

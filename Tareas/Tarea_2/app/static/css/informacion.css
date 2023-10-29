@@ -1,0 +1,42 @@
+@import "colors.css";
+@import "animations.css";
+@import "header.css";
+@import "button.css";
+
+body {
+    font-family: sans-serif;
+    background-color: var(--background);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+div {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1px;
+    width: 50%;
+    height: auto;
+    text-align: center;
+    background-color: rgba(141, 159, 160, 0.85);
+    border-radius: 50px;
+}
+
+h3 {
+    color: var(--background);
+    margin-bottom: 8px;
+}
+
+p {
+    margin-top: 0;
+    color: var(--background);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    padding: 6px;
+}

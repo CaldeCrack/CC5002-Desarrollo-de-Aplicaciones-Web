@@ -1,0 +1,134 @@
+@import "colors.css";
+@import "animations.css";
+@import "header.css";
+@import "button.css";
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--background);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 50%;
+    height: auto;
+    text-align: center;
+    background-color: rgba(141, 159, 160, 0.85);
+    border-radius: 50px;
+}
+
+[placeholder], fieldset label, select, li {
+    font-size: 18px;
+}
+
+.fieldset {
+    width: 100%;
+}
+
+fieldset, select, input, textarea {
+    border-radius: 6px;
+}
+
+textarea {
+    width: 90%;
+}
+
+#region {
+    width: 90%;
+}
+
+[type="text"], [type="tel"], [type="email"] {
+    padding: 4px;
+}
+
+fieldset {
+    margin: auto;
+    width: 70%;
+}
+
+label, fieldset {
+    font-size: 26px;
+}
+
+input, ul {
+    margin: 0;
+    padding: 0;
+}
+
+.onchange-region, .onchange-commune, .onchange-transport {
+    color: #505050;
+}
+
+option {
+    color: black;
+}
+
+#val-box {
+    margin: 12px auto;
+    padding: 1px;
+    width: 90%;
+    border-radius: 30px;
+    background-color: var(--primary);
+}
+
+ul {
+    list-style-type: none;
+    padding-bottom: 10px;
+}
+
+#submit-btn {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
+
+#submit, #submitted {
+    position: fixed;
+    border-radius: 30px;
+    padding: 10px;
+    background-color: var(--primary);
+    margin: 12px auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#buttons {
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+#confirmation-message {
+    text-align: center;
+    font-size: 18px;
+}
+
+a {
+    background-color: var(--accent);
+    border: 2px solid var(--secondary);
+}
+
+#not-opaque {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
