@@ -7,6 +7,7 @@ DB_HOST = "localhost"
 DB_PORT = 3306
 DB_CHARSET = "utf8"
 
+# --- GENERICS ---
 def get_conn():
 	conn = pymysql.connect(
 		db=DB_NAME,
@@ -17,43 +18,6 @@ def get_conn():
 		charset=DB_CHARSET
 	)
 	return conn
-
-# --- ARTESANOS ---
-
-def get_artesanos_count():
-	conn = get_conn()
-	cursor = conn.cursor()
-	cursor.execute("SELECT COUNT(*) FROM artesano")
-	count = cursor.fetchall()
-	return count
-
-def get_artesanos(page, page_size):
-	conn = get_conn()
-	cursor = conn.cursor()
-	cursor.execute("SELECT * FROM artesano ORDER BY id DESC LIMIT %s, %s;", ((int(page) - 1) * 5, page_size,))
-	artesanos = cursor.fetchall()
-	return artesanos
-
-def get_artesano_by_id(_id):
-	conn = get_conn()
-	cursor = conn.cursor()
-	cursor.execute("SELECT artesano.id, comuna.nombre, descripcion_artesania, artesano.nombre, email, celular FROM artesano, comuna WHERE artesano.comuna_id=comuna.id AND artesano.id=%s;", (_id, ))
-	artesano = cursor.fetchone()
-	return artesano
-
-def get_region_by_artesano_id(_id):
-	conn = get_conn()
-	cursor = conn.cursor()
-	cursor.execute("SELECT RE.nombre FROM artesano AT, comuna CO, region RE WHERE AT.id=%s AND AT.comuna_id=CO.id AND CO.region_id=RE.id;", (_id, ))
-	region = cursor.fetchone()
-	return region
-
-def get_max_page():
-	conn = get_conn()
-	cursor = conn.cursor()
-	cursor.execute("SELECT (COUNT(*)+4) DIV 5 FROM artesano;")
-	amount = cursor.fetchone()
-	return amount
 
 def get_regions():
 	conn = get_conn()
@@ -82,6 +46,42 @@ def get_commune_by_id(_id):
 	cursor.execute("SELECT nombre FROM comuna WHERE id=%s;", (_id,))
 	commune = cursor.fetchone()
 	return commune
+
+# --- ARTESANOS ---
+def get_artesanos_count():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT COUNT(*) FROM artesano")
+	count = cursor.fetchall()
+	return count
+
+def get_artesanos(page, page_size):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT * FROM artesano ORDER BY id DESC LIMIT %s, %s;", ((int(page) - 1) * 5, page_size,))
+	artesanos = cursor.fetchall()
+	return artesanos
+
+def get_artesano_by_id(_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT artesano.id, comuna.nombre, descripcion_artesania, artesano.nombre, email, celular FROM artesano, comuna WHERE artesano.comuna_id=comuna.id AND artesano.id=%s;", (_id, ))
+	artesano = cursor.fetchone()
+	return artesano
+
+def get_region_by_artesano_id(_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT RE.nombre FROM artesano AT, comuna CO, region RE WHERE AT.id=%s AND AT.comuna_id=CO.id AND CO.region_id=RE.id;", (_id, ))
+	region = cursor.fetchone()
+	return region
+
+def get_crafter_max_page():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT (COUNT(*)+4) DIV 5 FROM artesano;")
+	amount = cursor.fetchone()
+	return amount
 
 def get_types(_id):
 	conn = get_conn()
@@ -116,11 +116,9 @@ def create_artesano(commune_name, desc, name, email, phone):
 def create_artesano_tipo(id, types):
 	conn = get_conn()
 	cursor = conn.cursor()
-	types_ids = []
 	for type in types:
 		cursor.execute("SELECT id FROM tipo_artesania WHERE nombre=%s;", (type))
-		types_ids += cursor.fetchone()
-	for type_id in types_ids:
+		type_id = cursor.fetchone()
 		cursor.execute("INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (%s, %s);", (id, type_id))
 	conn.commit()
 
@@ -143,10 +141,38 @@ def register_crafter(form, imgs):
 	create_imgs(imgs, artesano_id)
 
 # --- HINCHAS ---
-
 def get_sports():
 	conn = get_conn()
 	cursor = conn.cursor()
 	cursor.execute("SELECT nombre FROM deporte;")
 	regions = cursor.fetchall()
 	return regions
+
+def create_hincha(commune_name, transport, name, email, phone, comments):
+	conn = get_conn()
+	cursor = conn.cursor()
+	commune_id = get_commune_id_by_name(commune_name)
+	cursor.execute("INSERT INTO hincha (comuna_id, modo_transporte, nombre, email, celular, comentarios) VALUES (%s, %s, %s, %s, %s, %s);", (commune_id, transport, name, email, phone, comments))
+	conn.commit()
+	cursor.execute("SELECT LAST_INSERT_ID();")
+	return cursor.fetchone()
+
+def create_hincha_sports(id, sports):
+	conn = get_conn()
+	cursor = conn.cursor()
+	for sport in sports:
+		cursor.execute("SELECT id FROM deporte WHERE nombre=%s;", (sport))
+		sport_id = cursor.fetchone()
+		cursor.execute("INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (%s, %s);", (id, sport_id))
+	conn.commit()
+
+def register_fan(form):
+	name = form.get("name")
+	email = form.get("email")
+	phone = form.get("phone")
+	comments = form.get("comments")
+	transport = form.get("transport")
+	sports = form.getlist("sports")
+	commune = form.get("commune")
+	hincha_id = create_hincha(commune, transport, name, email, phone, comments)
+	create_hincha_sports(hincha_id, sports)

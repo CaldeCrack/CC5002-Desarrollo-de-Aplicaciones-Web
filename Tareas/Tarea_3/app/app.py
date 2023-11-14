@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for
 from utils.validations import validate_crafter_form, validate_fan_form
 from werkzeug.utils import secure_filename
-from database.db import register_crafter
+from database.db import register_crafter, register_fan
 import hashlib, filetype, os, uuid, database.db as db
 
 UPLOAD_FOLDER = "static/uploads"
@@ -71,10 +71,10 @@ def ver_artesanos():
         page = int(page)
 
         # Cycle through data
-        if page > db.get_max_page()[0]:
+        if page > db.get_crafter_max_page()[0]:
             return redirect(url_for("ver_artesanos", page=1))
         elif page <= 0:
-            return redirect(url_for("ver_artesanos", page=db.get_max_page()))
+            return redirect(url_for("ver_artesanos", page=db.get_crafter_max_page()))
 
         # Format data
         data = []
@@ -92,7 +92,7 @@ def ver_artesanos():
                 "crafts": types,
                 "photo": img_path[0][0] + "/" + img_path[0][1]
             })
-        return render_template("ver-artesanos.html", data=data, page=page, max_page=db.get_max_page()[0])
+        return render_template("ver-artesanos.html", data=data, page=page, max_page=db.get_crafter_max_page()[0])
 
     # Update current page
     elif request.method == "POST":
@@ -146,8 +146,10 @@ def submit_hincha():
     hincha_form = request.form
 
     # Validations
-    errors = validate_crafter_form(hincha_form)
+    errors = validate_fan_form(hincha_form)
+    print(errors)
     if not errors:
+        register_fan(hincha_form)
         return redirect(url_for("index", show=True))
     return redirect(url_for("registrar_hincha", errors=errors))
 

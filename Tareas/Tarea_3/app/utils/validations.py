@@ -1,7 +1,7 @@
 import re, filetype, database.db as db
 
 def validate_name(value):
-    return 3 <= len(value) <= 80
+    return 3 <= len(value) <= 80 and value.strip()
 
 def validate_email(value):
     return bool(re.search("([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+", value)) and (5 <= len(value) <= 30)
@@ -93,7 +93,7 @@ def validate_fan_form(form):
         errors.append("Email")
     if not validate_phone(form.get("phone")):
         errors.append("Número de teléfono")
-    if not validate_comment(form.get("comment")):
+    if not validate_comment(form.get("comments")):
         errors.apend("Comentarios adicionales")
     if not validate_transport(form.get("transport")):
         errors.append("Modo de transporte")
