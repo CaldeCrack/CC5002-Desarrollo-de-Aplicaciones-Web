@@ -38,7 +38,7 @@
                             {{sport[0]}}{{ ", " if not loop.last else "" }}
                             {% endfor %}
                         </td>
-                        <td>{{hincha.transport}}</td>
+                        <td>{{hincha.transport|title}}</td>
                         <td>{{hincha.phone if hincha.phone else "---"}}</td>
                     </tr>
                 {% endfor %}

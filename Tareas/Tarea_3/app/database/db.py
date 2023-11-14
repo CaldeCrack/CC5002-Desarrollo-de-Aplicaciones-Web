@@ -72,7 +72,7 @@ def get_artesano_by_id(_id):
 def get_region_by_artesano_id(_id):
 	conn = get_conn()
 	cursor = conn.cursor()
-	cursor.execute("SELECT RE.nombre FROM artesano AT, comuna CO, region RE WHERE AT.id=%s AND AT.comuna_id=CO.id AND CO.region_id=RE.id;", (_id, ))
+	cursor.execute("SELECT R.nombre FROM artesano A, comuna C, region R WHERE A.id=%s AND A.comuna_id=C.id AND C.region_id=R.id;", (_id, ))
 	region = cursor.fetchone()
 	return region
 
@@ -86,7 +86,7 @@ def get_crafter_max_page():
 def get_types_by_artesan_id(_id):
 	conn = get_conn()
 	cursor = conn.cursor()
-	cursor.execute("SELECT TA.nombre FROM tipo_artesania TA, artesano_tipo AT WHERE AT.tipo_artesania_id=TA.id AND AT.artesano_id=%s;", (_id,))
+	cursor.execute("SELECT T.nombre FROM tipo_artesania T, artesano_tipo A WHERE A.tipo_artesania_id=T.id AND A.artesano_id=%s;", (_id,))
 	types = cursor.fetchall()
 	return types
 
@@ -155,6 +155,20 @@ def get_hinchas(page, page_size):
 	hinchas = cursor.fetchall()
 	return hinchas
 
+def get_hincha_by_id(_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT comuna.nombre, modo_transporte, hincha.nombre, email, celular, comentarios FROM hincha, comuna WHERE hincha.comuna_id=comuna.id AND hincha.id=%s;", (_id, ))
+	hincha = cursor.fetchone()
+	return hincha
+
+def get_region_by_hincha_id(_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT R.nombre FROM hincha H, comuna C, region R WHERE H.id=%s AND H.comuna_id=C.id AND C.region_id=R.id;", (_id, ))
+	region = cursor.fetchone()
+	return region
+
 def get_hincha_max_page():
 	conn = get_conn()
 	cursor = conn.cursor()
@@ -169,7 +183,7 @@ def get_sports():
 	sports = cursor.fetchall()
 	return sports
 
-def get_sports_by_fan_id(_id):
+def get_sports_by_hincha_id(_id):
 	conn = get_conn()
 	cursor = conn.cursor()
 	cursor.execute("SELECT D.nombre FROM deporte D, hincha_deporte HD WHERE HD.deporte_id=D.id AND HD.hincha_id=%s;", (_id,))

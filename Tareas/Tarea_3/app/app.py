@@ -26,7 +26,7 @@ def agregar_hincha():
 def agregar_artesano():
     return render_template("agregar-artesano.html")
 
-#* Artesanos
+# Artesanos
 @app.route("/registrar-artesano", methods=["GET"])
 def registrar_artesano():
     errors = request.args.getlist("errors")
@@ -177,7 +177,7 @@ def ver_hinchas():
         for hincha in db.get_hinchas(page, page_size=5):
             _id, commune_id, transport, name, _, phone, _ = hincha
             commune = db.get_commune_by_id(commune_id)
-            sports = db.get_sports_by_fan_id(_id)
+            sports = db.get_sports_by_hincha_id(_id)
 
             data.append({
                 "id": _id,
@@ -204,7 +204,29 @@ def ver_hinchas():
 
 @app.route("/informacion-hincha", methods=["GET", "POST"])
 def informacion_hincha():
-    return render_template("informacion-hincha.html")
+    if request.method == "GET":
+        # Format data
+        hincha_id = request.args.get("hincha_id")
+        pagina = request.args.get("pagina")
+        hincha = db.get_hincha_by_id(hincha_id)
+        region = db.get_region_by_hincha_id(hincha_id)
+        sports = db.get_sports_by_hincha_id(hincha_id)
+        data = {
+            "region": region[0],
+            "commune": hincha[0],
+            "transport": hincha[1],
+            "name": hincha[2],
+            "email": hincha[3],
+            "phone": hincha[4],
+            "comments": hincha[5],
+            "sports": sports
+        }
+        return render_template("informacion-hincha.html", data=data, pagina=pagina)
+
+    elif request.method == "POST":
+        hincha_id = request.form.get("hincha-info")
+        pagina = request.form.get("pagina")
+        return redirect(url_for("informacion_hincha", hincha_id=hincha_id, pagina=pagina))
 
 if __name__ == "__main__":
     app.run(debug=True)
