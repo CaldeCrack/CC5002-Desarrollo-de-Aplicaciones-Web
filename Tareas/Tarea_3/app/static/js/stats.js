@@ -19,30 +19,6 @@ Highcharts.chart('hincha-container', {
     }]
 });
 
-fetch("http://localhost:5000/get-stats-data")
-    .then((response) => response.json())
-    .then((data) => {
-    let parsedData = data[0]
-    console.log(data)
-
-    // Get the chart by ID
-    const chart = Highcharts.charts.find(
-        (chart) => chart && chart.renderTo.id === "hincha-container"
-    );
-
-    // Update the chart with new data
-    chart.update({
-        series: [
-            {
-                data: parsedData,
-            },
-        ],
-    });
-})
-.catch((error) => console.error("Error:", error));
-
-// #########################################################
-
 Highcharts.chart('artesano-container', {
     chart: {
         type: 'column'
@@ -63,3 +39,46 @@ Highcharts.chart('artesano-container', {
         data: [10]
     }]
 });
+
+fetch("http://127.0.0.1:5000/get-stats-data")
+    .then((response) => response.json())
+    .then((data) => {
+    let hinchas = data["hinchas"]
+    let sports = hinchas.map((item) => {return item[0]})
+    let fans_amount = hinchas.map((item) => {return item[1]})
+
+    const fan_chart = Highcharts.charts.find(
+        (chart) => chart && chart.renderTo.id === "hincha-container"
+    );
+
+    fan_chart.update({
+        xAxis: {
+            categories: sports
+        },
+        series: [
+            {
+                data: fans_amount,
+            },
+        ],
+    });
+
+    let artesanos = data["artesanos"]
+    let tipos = artesanos.map((item) => {return item[0]})
+    let crafters_amount = artesanos.map((item) => {return item[1]})
+
+    const crafter_chart = Highcharts.charts.find(
+        (chart) => chart && chart.renderTo.id === "artesano-container"
+    );
+
+    crafter_chart.update({
+        xAxis: {
+            categories: tipos
+        },
+        series: [
+            {
+                data: crafters_amount,
+            },
+        ],
+    });
+})
+.catch((error) => console.error("Error:", error));

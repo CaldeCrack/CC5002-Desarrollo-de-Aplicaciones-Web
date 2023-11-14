@@ -235,12 +235,11 @@ def informacion_hincha():
 
 # Stats
 @app.route("/get-stats-data", methods=["GET"])
-@cross_origin(origin="localhost", supports_credentials=True)
+@cross_origin(origin="http://127.0.0.1", supports_credentials=True)
 def get_stats_data():
     fans_data = db.get_fans_stats()
     crafters_data = db.get_crafters_stats()
-    print(fans_data)
-    return jsonify(fans_data), jsonify(crafters_data)
+    return jsonify({"hinchas": fans_data, "artesanos": crafters_data})
 
 if __name__ == "__main__":
     app.run(debug=True)

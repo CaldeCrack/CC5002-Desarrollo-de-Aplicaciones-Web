@@ -223,13 +223,13 @@ def register_fan(form):
 def get_crafters_stats():
 	conn = get_conn()
 	cursor = conn.cursor()
-	cursor.execute("SELECT tipo_artesania_id, COUNT(*) AS cantidad FROM artesano_tipo GROUP BY tipo_artesania_id;")
+	cursor.execute("SELECT T.nombre, COUNT(*) AS cantidad FROM artesano_tipo A, tipo_artesania T WHERE A.tipo_artesania_id = T.id GROUP BY tipo_artesania_id;")
 	stats = cursor.fetchall()
 	return stats
 
 def get_fans_stats():
 	conn = get_conn()
 	cursor = conn.cursor()
-	cursor.execute("SELECT deporte_id, COUNT(*) AS cantidad FROM hincha_deporte GROUP BY deporte_id;")
+	cursor.execute("SELECT D.nombre, COUNT(*) AS cantidad FROM hincha_deporte H, deporte D WHERE H.deporte_id = D.id GROUP BY D.id;")
 	stats = cursor.fetchall()
 	return stats
