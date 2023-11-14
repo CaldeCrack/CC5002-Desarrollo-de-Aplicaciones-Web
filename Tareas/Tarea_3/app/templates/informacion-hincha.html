@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/informacion-hincha.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos Panamericanos - Info Hincha</title>
+</head>
+<body>
+    <header>
+        <h2>Información del hincha</h2>
+    </header>
+    <div>
+        <h3>Deporte(s) que apoya:</h3>
+        <ul>
+            <li>Básquetbol</li>
+            <li>Ciclismo</li>
+            <li>Skateboarding</li>
+        </ul>
+        <h3>Región donde vive:</h3>
+        <p>RM - Región Metropolitana</p>
+        <h3>Comuna donde vive:</h3>
+        <p>Pedro Aguirre Cerda</p>
+        <h3>Modo de transporte:</h3>
+        <p>Locomoción pública</p>
+        <h3>Nombre:</h3>
+        <p>Roberto Rivera</p>
+        <h3>Email contacto:</h3>
+        <p>rirc123@gmail.com</p>
+        <h3>Número celular contacto:</h3>
+        <p>+56956470508</p>
+        <h3>Comentarios adicionales:</h3>
+        <p>Todo lo que es real, dentro de los dominios de la historia humana, se convierte con el tiempo en irracional</p>
+    </div>
+    <a href="{{ url_for('ver_hinchas') }}">Volver al listado de hinchas</a>
+</body>
+</html>

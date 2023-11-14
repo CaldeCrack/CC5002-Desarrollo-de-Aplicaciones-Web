@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ver-artesanos.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos Panamericanos - Listado de Artesanos</title>
+</head>
+<body>
+    <header>
+        <h2>Listado de artesanos</h2>
+    </header>
+    <div id="artesanos-container">
+        {% if data %}
+            {% for artesano in data %}
+            <form name="{{artesano.id}}" id="{{loop.index}}" action="informacion-artesano" method="post">
+                <input type="hidden" name="artesano-info" value="{{artesano.id}}" form="{{loop.index}}">
+                <input type="hidden" name="pagina" value="{{page if page else '1'}}" form="{{loop.index}}">
+            </form>
+            {% endfor %}
+        {% endif %}
+        <div id="left">
+            <table id="artesanos">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Comuna</th>
+                    <th>Tipo Artesanías</th>
+                    <th>Fotos</th>
+            </tr>
+            {% if data %}
+                {% for artesano in data %}
+                    <tr id="{{loop.index}}{{loop.index}}">
+                        <td>{{artesano.name}}</td>
+                        <td>{{artesano.phone if artesano.phone else "---"}}</td>
+                        <td>{{artesano.commune}}</td>
+                        <td>
+                            {% for type in artesano.crafts %}
+                            {{type[0]}}{{ ", " if not loop.last else "" }}
+                            {% endfor %}
+                        </td>
+                        <td><div class="artesano_img"><img src="{{artesano.photo}}" alt="artesania de {{artesano.name}}"></div></td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </table>
+            <div>
+                <form id="pages" method="post" action="ver-artesanos">
+                    <input name="prev" id="prev" type="submit" value="&#60;">
+                    <p id="index">{{ page if page else "1" }}/{{ max_page if max_page else "1" }}</p>
+                    <input type="hidden" name="page" value="{{ page if page else '1' }}">
+                    <input name="next" id="next" type="submit" value="&#62;">
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="{{ url_for('index') }}">Volver al inicio</a>
+    <script type="module" src="{{ url_for('static', filename='js/ver-artesanos.js') }}"></script>
+</body>
+</html>
