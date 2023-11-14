@@ -63,8 +63,7 @@ const validateCraftImages = (files) => {
 
 const validateName = (name) => {
     const nameLength = name.length;
-    if(nameLength < 3 || 80 < nameLength && name.trim()) return false;
-    return true;
+    return 3 <= nameLength <= 80 && name.trim();
 }
 
 const validateEmail = (email) => {

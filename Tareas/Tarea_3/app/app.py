@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, redirect, url_for
-from utils.validations import validate_form
+from utils.validations import validate_crafter_form, validate_fan_form
 from werkzeug.utils import secure_filename
 from database.db import register_crafter
 import hashlib, filetype, os, uuid, database.db as db
@@ -26,29 +26,21 @@ def agregar_hincha():
 def agregar_artesano():
     return render_template("agregar-artesano.html")
 
-@app.route("/ver-hinchas")
-def ver_hinchas():
-    return render_template("ver-hinchas.html")
-
-# Artesanos
+#* Artesanos
 @app.route("/registrar-artesano", methods=["GET"])
 def registrar_artesano():
     errors = request.args.getlist("errors")
     return render_template("agregar-artesano.html", errors=errors)
 
-@app.route("/informacion-hincha")
-def informacion_hincha():
-    return render_template("informacion-hincha.html")
-
 @app.route("/registrar-artesano/errors", methods=["POST"])
-def show_errors():
+def submit_artesano():
     # Request form
     artesano_form = request.form
     artesano_imgs = request.files.getlist("images")
 
     # Validations
-    errors = validate_form(artesano_form, artesano_imgs)
-    if errors == []:
+    errors = validate_crafter_form(artesano_form, artesano_imgs)
+    if not errors:
         imgs = []
         # Encrypt imgs filename
         for img in artesano_imgs:
@@ -141,6 +133,31 @@ def informacion_artesano():
         artesano_id = request.form.get("artesano-info")
         pagina = request.form.get("pagina")
         return redirect(url_for("informacion_artesano", artesano_id=artesano_id, pagina=pagina))
+
+#* Hinchas
+@app.route("/registrar-hincha", methods=["GET"])
+def registrar_hincha():
+    errors = request.args.getlist("errors")
+    return render_template("agregar-hincha.html", errors=errors)
+
+@app.route("/registrar-hincha/errors", methods=["POST"])
+def submit_hincha():
+    # Request form
+    hincha_form = request.form
+
+    # Validations
+    errors = validate_crafter_form(hincha_form)
+    if not errors:
+        return redirect(url_for("index", show=True))
+    return redirect(url_for("registrar_hincha", errors=errors))
+
+@app.route("/ver-hinchas", methods=["GET", "POST"])
+def ver_hinchas():
+    return render_template("ver-hinchas.html")
+
+@app.route("/informacion-hincha", methods=["GET", "POST"])
+def informacion_hincha():
+    return render_template("informacion-hincha.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -18,6 +18,8 @@ def get_conn():
 	)
 	return conn
 
+# --- ARTESANOS ---
+
 def get_artesanos_count():
 	conn = get_conn()
 	cursor = conn.cursor()
@@ -139,3 +141,12 @@ def register_crafter(form, imgs):
 	artesano_id = create_artesano(commune, desc, name, email, phone)
 	create_artesano_tipo(artesano_id, crafts)
 	create_imgs(imgs, artesano_id)
+
+# --- HINCHAS ---
+
+def get_sports():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT nombre FROM deporte;")
+	regions = cursor.fetchall()
+	return regions

@@ -11,24 +11,26 @@
         <div id="submit" hidden>
             <h2>¿Confirma el registro de este hincha?</h2>
             <div id="buttons">
-                <button id="confirm" type="button">Sí, confirmo</button>
+                <button id="confirm" type="submit" form="myForm">Sí, confirmo</button>
                 <button id="deny" type="button">No, quiero volver al formulario</button>
             </div>
-        </div>
-        <div id="submitted" hidden>
-            <p id="confirmation-message">Hemos recibido el registro de hincha.<br>Muchas Gracias.</p>
-            <a href="{{ url_for('index') }}">Volver al inicio</a>
         </div>
     </div>
     <header>
         <h1>Registrar hincha</h1>
     </header>
     <div class="container">
-        <div id="val-box" hidden>
+        <div id="val-box" {% if not errors %} hidden {% endif %} >
             <h2>Complete adecuadamente los siguientes campos:</h2>
-            <ul id="val-list"></ul>
+            <ul id="val-list">
+                {% if errors %}
+                    {% for error in errors %}
+                        <li>{{error}}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
         </div>
-        <form name="myForm" id="myForm" action="post" enctype="multipart/form-data">
+        <form name="myForm" id="myForm" action="registrar-hincha/errors" enctype="multipart/form-data">
             <fieldset form="myForm" name="sports" id="sports" style="overflow-y: scroll; height: 10rem;">
                 <legend>Elija entre 1 a 3 deportes de su interés</legend>
             </fieldset><br>
