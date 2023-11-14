@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stats.css') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juegos Panamericanos - Estadísticas</title>
@@ -19,6 +19,7 @@
             </div>
         </figure>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.6.1/randomColor.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="{{url_for('static', filename='js/stats.js')}}"></script>
 </body>

@@ -2,6 +2,12 @@ Highcharts.chart('hincha-container', {
     chart: {
         type: 'column'
     },
+    plotOptions: {
+        column: {
+            colorByPoint: true
+        }
+    },
+    colors: {},
     title: {
         text: 'Hinchas por deporte'
     },
@@ -15,7 +21,7 @@ Highcharts.chart('hincha-container', {
     },
     series: [{
         name: 'Hinchas',
-        data: []
+        data: [],
     }]
 });
 
@@ -23,6 +29,12 @@ Highcharts.chart('artesano-container', {
     chart: {
         type: 'column'
     },
+    plotOptions: {
+        column: {
+            colorByPoint: true
+        }
+    },
+    colors: {},
     title: {
         text: 'Artesanos por tipo de artesanía'
     },
@@ -36,7 +48,7 @@ Highcharts.chart('artesano-container', {
     },
     series: [{
         name: 'Artesanos',
-        data: [10]
+        data: [],
     }]
 });
 
@@ -52,6 +64,13 @@ fetch("http://127.0.0.1:5000/get-stats-data")
     );
 
     fan_chart.update({
+        colors: (function() {
+            let colors = [];
+            for (let i = 0; i < sports.length; i++) {
+                colors.push(randomColor());
+            }
+            return colors;
+        })(),
         xAxis: {
             categories: sports
         },
@@ -63,7 +82,7 @@ fetch("http://127.0.0.1:5000/get-stats-data")
     });
 
     let artesanos = data["artesanos"]
-    let tipos = artesanos.map((item) => {return item[0]})
+    let types = artesanos.map((item) => {return item[0]})
     let crafters_amount = artesanos.map((item) => {return item[1]})
 
     const crafter_chart = Highcharts.charts.find(
@@ -71,8 +90,15 @@ fetch("http://127.0.0.1:5000/get-stats-data")
     );
 
     crafter_chart.update({
+        colors: (function() {
+            let colors = [];
+            for (let i = 0; i < sports.length; i++) {
+                colors.push(randomColor());
+            }
+            return colors;
+        })(),
         xAxis: {
-            categories: tipos
+            categories: types
         },
         series: [
             {
