@@ -10,15 +10,50 @@
     <header>
         <h2>Listado de Hinchas</h2>
     </header>
-    <table id="hinchas">
-        <tr>
-            <th>Nombre</th>
-            <th>Comuna</th>
-            <th>Deportes</th>
-            <th>Modo Transporte</th>
-            <th>Número celular</th>
-        </tr>
-    </table>
+    <div id="hinchas-container">
+        {% if data %}
+            {% for hincha in data %}
+            <form name="{{hincha.id}}" id="{{loop.index}}" action="informacion-hincha" method="post">
+                <input type="hidden" name="hincha-info" value="{{hincha.id}}" form="{{loop.index}}">
+                <input type="hidden" name="pagina" value="{{page if page else '1'}}" form="{{loop.index}}">
+            </form>
+            {% endfor %}
+        {% endif %}
+        <div id="left">
+            <table id="hinchas">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Comuna</th>
+                    <th>Deportes</th>
+                    <th>Modo de transporte</th>
+                    <th>Número de celular</th>
+            </tr>
+            {% if data %}
+                {% for hincha in data %}
+                    <tr id="{{loop.index}}{{loop.index}}">
+                        <td>{{hincha.name}}</td>
+                        <td>{{hincha.commune}}</td>
+                        <td>
+                            {% for sport in hincha.sports %}
+                            {{sport[0]}}{{ ", " if not loop.last else "" }}
+                            {% endfor %}
+                        </td>
+                        <td>{{hincha.transport}}</td>
+                        <td>{{hincha.phone if hincha.phone else "---"}}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </table>
+            <div>
+                <form id="pages" method="post" action="ver-hinchas">
+                    <input name="prev" id="prev" type="submit" value="&#60;">
+                    <p id="index">{{ page if page else "1" }}/{{ max_page if max_page else "1" }}</p>
+                    <input type="hidden" name="page" value="{{ page if page else '1' }}">
+                    <input name="next" id="next" type="submit" value="&#62;">
+                </form>
+            </div>
+        </div>
+    </div>
     <a href="{{ url_for('index') }}">Volver al inicio</a>
     <script type="module" src="{{ url_for('static', filename='js/ver-hinchas.js') }}"></script>
 </body>

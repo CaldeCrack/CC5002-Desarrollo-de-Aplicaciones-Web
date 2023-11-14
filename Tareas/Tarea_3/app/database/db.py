@@ -83,7 +83,7 @@ def get_crafter_max_page():
 	amount = cursor.fetchone()
 	return amount
 
-def get_types(_id):
+def get_types_by_artesan_id(_id):
 	conn = get_conn()
 	cursor = conn.cursor()
 	cursor.execute("SELECT TA.nombre FROM tipo_artesania TA, artesano_tipo AT WHERE AT.tipo_artesania_id=TA.id AND AT.artesano_id=%s;", (_id,))
@@ -141,12 +141,40 @@ def register_crafter(form, imgs):
 	create_imgs(imgs, artesano_id)
 
 # --- HINCHAS ---
+def get_hinchas_count():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT COUNT(*) FROM hincha")
+	count = cursor.fetchall()
+	return count
+
+def get_hinchas(page, page_size):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT * FROM hincha ORDER BY id DESC LIMIT %s, %s;", ((int(page) - 1) * 5, page_size,))
+	hinchas = cursor.fetchall()
+	return hinchas
+
+def get_hincha_max_page():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT (COUNT(*)+4) DIV 5 FROM hincha;")
+	amount = cursor.fetchone()
+	return amount
+
 def get_sports():
 	conn = get_conn()
 	cursor = conn.cursor()
 	cursor.execute("SELECT nombre FROM deporte;")
-	regions = cursor.fetchall()
-	return regions
+	sports = cursor.fetchall()
+	return sports
+
+def get_sports_by_fan_id(_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT D.nombre FROM deporte D, hincha_deporte HD WHERE HD.deporte_id=D.id AND HD.hincha_id=%s;", (_id,))
+	sports = cursor.fetchall()
+	return sports
 
 def create_hincha(commune_name, transport, name, email, phone, comments):
 	conn = get_conn()
@@ -172,7 +200,7 @@ def register_fan(form):
 	phone = form.get("phone")
 	comments = form.get("comments")
 	transport = form.get("transport")
-	sports = form.getlist("sports")
+	sports = form.getlist("sport")
 	commune = form.get("commune")
 	hincha_id = create_hincha(commune, transport, name, email, phone, comments)
 	create_hincha_sports(hincha_id, sports)

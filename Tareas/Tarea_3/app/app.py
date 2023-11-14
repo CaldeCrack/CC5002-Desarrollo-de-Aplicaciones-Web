@@ -81,7 +81,7 @@ def ver_artesanos():
         for artesano in db.get_artesanos(page, page_size=5):
             _id, commune_id, _, name, _, phone = artesano
             commune = db.get_commune_by_id(commune_id)
-            types = db.get_types(_id)
+            types = db.get_types_by_artesan_id(_id)
             img_path = db.get_imgs(_id)
 
             data.append({
@@ -115,7 +115,7 @@ def informacion_artesano():
         pagina = request.args.get("pagina")
         artesano = db.get_artesano_by_id(artesano_id)
         region = db.get_region_by_artesano_id(artesano_id)
-        types = db.get_types(artesano_id)
+        types = db.get_types_by_artesan_id(artesano_id)
         imgs = db.get_imgs(artesano_id)
         data = {
             "region": region[0],
@@ -147,7 +147,6 @@ def submit_hincha():
 
     # Validations
     errors = validate_fan_form(hincha_form)
-    print(errors)
     if not errors:
         register_fan(hincha_form)
         return redirect(url_for("index", show=True))
@@ -155,7 +154,53 @@ def submit_hincha():
 
 @app.route("/ver-hinchas", methods=["GET", "POST"])
 def ver_hinchas():
-    return render_template("ver-hinchas.html")
+    if request.method == "GET":
+        page = request.args.get("page")
+        pagina = request.args.get("pagina")
+        # Special cases
+        if (int(db.get_hinchas_count()[0][0])) == 0:
+            return render_template("ver-hinchas.html", page=1, max_page=1)
+        if not page:
+            page = 1
+        if pagina:
+            page = pagina
+        page = int(page)
+
+        # Cycle through data
+        if page > db.get_hincha_max_page()[0]:
+            return redirect(url_for("ver_hinchas", page=1))
+        elif page <= 0:
+            return redirect(url_for("ver_hinchas", page=db.get_hincha_max_page()))
+
+        # Format data
+        data = []
+        for hincha in db.get_hinchas(page, page_size=5):
+            _id, commune_id, transport, name, _, phone, _ = hincha
+            commune = db.get_commune_by_id(commune_id)
+            sports = db.get_sports_by_fan_id(_id)
+
+            data.append({
+                "id": _id,
+                "name": name,
+                "commune": commune[0],
+                "sports": sports,
+                "transport": transport,
+                "phone": phone
+            })
+        return render_template("ver-hinchas.html", data=data, page=page, max_page=db.get_hincha_max_page()[0])
+
+    # Update current page
+    elif request.method == "POST":
+        show_page = request.form
+        page = show_page.get("page")
+        if not page:
+            page = 1
+        page = int(page)
+        if show_page.get("next"):
+            page += 1
+        elif show_page.get("prev"):
+            page -= 1
+        return redirect(url_for("ver_hinchas", page=page))
 
 @app.route("/informacion-hincha", methods=["GET", "POST"])
 def informacion_hincha():

@@ -42,11 +42,7 @@ def validate_transport(value):
     return value == 'particular' or value == 'locomoción pública'
 
 def validate_sports(value):
-    sports = db.get_sports()
-    for sport in sports:
-        if sport == value:
-            return True
-    return False
+    return 1 <= len(value) <= 3
 
 def validate_imgs(imgs):
     valid_imgs = True
@@ -97,7 +93,7 @@ def validate_fan_form(form):
         errors.apend("Comentarios adicionales")
     if not validate_transport(form.get("transport")):
         errors.append("Modo de transporte")
-    if not validate_sports(form.get("sports")):
+    if not validate_sports(form.getlist("sport")):
         errors.append("Deportes")
     if not validate_region(form.get("region")):
         errors.append("Región")
