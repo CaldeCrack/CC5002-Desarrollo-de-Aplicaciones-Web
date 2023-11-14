@@ -25,6 +25,9 @@
             <td> <a href="{{ url_for('ver_hinchas') }}"><div>Ver listado de hinchas</div></a> </td>
             <td> <a href="{{ url_for('ver_artesanos') }}"><div>Ver listado de artesanos</div></a> </td>
         </tr>
+        <tr>
+            <td colspan="2"> <a href="{{ url_for('stats') }}"><div>Estadísticas</div></a> </td>
+        </tr>
     </table>
     <script type="module" src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>

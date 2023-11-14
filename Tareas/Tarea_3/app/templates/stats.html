@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos Panamericanos - Estadísticas</title>
+</head>
+<body>
+    <div class="stats-container">
+        <figure class="highcharts-figure">
+            <div id="hincha-container">
+                <p class="highcharts-description">Cantidad de hinchas por deporte</p>
+            </div>
+        </figure>
+        <figure class="highcharts-figure">
+            <div id="artesano-container">
+                <p class="highcharts-description">Cantidad de artesanos por tipo de artesanía</p>
+            </div>
+        </figure>
+    </div>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="{{url_for('static', filename='js/stats.js')}}"></script>
+</body>
+</html>

@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, jsonify
+from flask_cors import cross_origin
 from utils.validations import validate_crafter_form, validate_fan_form
 from werkzeug.utils import secure_filename
 from database.db import register_crafter, register_fan
@@ -25,6 +26,10 @@ def agregar_hincha():
 @app.route("/agregar-artesanos")
 def agregar_artesano():
     return render_template("agregar-artesano.html")
+
+@app.route("/stats")
+def stats():
+    return render_template("stats.html")
 
 # Artesanos
 @app.route("/registrar-artesano", methods=["GET"])
@@ -134,7 +139,7 @@ def informacion_artesano():
         pagina = request.form.get("pagina")
         return redirect(url_for("informacion_artesano", artesano_id=artesano_id, pagina=pagina))
 
-#* Hinchas
+# Hinchas
 @app.route("/registrar-hincha", methods=["GET"])
 def registrar_hincha():
     errors = request.args.getlist("errors")
@@ -227,6 +232,15 @@ def informacion_hincha():
         hincha_id = request.form.get("hincha-info")
         pagina = request.form.get("pagina")
         return redirect(url_for("informacion_hincha", hincha_id=hincha_id, pagina=pagina))
+
+# Stats
+@app.route("/get-stats-data", methods=["GET"])
+@cross_origin(origin="localhost", supports_credentials=True)
+def get_stats_data():
+    fans_data = db.get_fans_stats()
+    crafters_data = db.get_crafters_stats()
+    print(fans_data)
+    return jsonify(fans_data), jsonify(crafters_data)
 
 if __name__ == "__main__":
     app.run(debug=True)

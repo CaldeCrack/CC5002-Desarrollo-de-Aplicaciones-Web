@@ -218,3 +218,18 @@ def register_fan(form):
 	commune = form.get("commune")
 	hincha_id = create_hincha(commune, transport, name, email, phone, comments)
 	create_hincha_sports(hincha_id, sports)
+
+# --- STATS ---
+def get_crafters_stats():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT tipo_artesania_id, COUNT(*) AS cantidad FROM artesano_tipo GROUP BY tipo_artesania_id;")
+	stats = cursor.fetchall()
+	return stats
+
+def get_fans_stats():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT deporte_id, COUNT(*) AS cantidad FROM hincha_deporte GROUP BY deporte_id;")
+	stats = cursor.fetchall()
+	return stats
