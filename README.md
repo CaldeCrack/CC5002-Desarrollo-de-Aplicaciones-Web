@@ -9,6 +9,7 @@ Ejercicios y tareas relacionadas al desarrollo de una página web.
 - [Ejercicio 3](Ejercicios/ejercicio_3.md): SSTI e introducción a Flask
 - [Ejercicio 4](Ejercicios/ejercicio_4.md): Carga de archivos sin restricciones
 - [Ejercicio 5](Ejercicios/ejercicio_5.md): Cookies y CORS
+- [Ejercicio 6](Ejercicios/ejercicio_6.md): Spring Boot
 
 ## Tareas
 
